@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.3
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Apr 22, 2026 at 10:46 AM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Host: db:3306
+-- Generation Time: Apr 23, 2026 at 02:49 PM
+-- Server version: 8.0.45
+-- PHP Version: 8.3.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,14 +28,14 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `transactions` (
-  `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `book_id` int(11) NOT NULL,
-  `issue_date` timestamp NOT NULL DEFAULT current_timestamp(),
+  `id` int NOT NULL,
+  `user_id` int NOT NULL,
+  `book_id` int NOT NULL,
+  `issue_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `return_deadline` date NOT NULL,
   `return_date` date DEFAULT NULL,
-  `status` enum('borrowed','returned','overdue') DEFAULT 'borrowed',
-  `fine_amount` decimal(10,2) DEFAULT 0.00
+  `status` enum('borrowed','returned','overdue') COLLATE utf8mb4_general_ci DEFAULT 'borrowed',
+  `fine_amount` decimal(10,2) DEFAULT '0.00'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -50,7 +50,11 @@ INSERT INTO `transactions` (`id`, `user_id`, `book_id`, `issue_date`, `return_de
 (5, 2, 1, '2026-04-21 12:57:33', '2026-05-21', '2026-04-22', 'returned', 0.00),
 (6, 2, 1, '2026-04-22 08:43:38', '2026-05-22', '2026-04-22', 'returned', 0.00),
 (7, 2, 1, '2026-04-22 08:43:54', '2026-05-22', '2026-04-22', 'returned', 0.00),
-(8, 2, 1, '2026-04-22 08:45:03', '2026-05-22', NULL, 'borrowed', 0.00);
+(8, 2, 1, '2026-04-22 08:45:03', '2026-05-22', NULL, 'borrowed', 0.00),
+(9, 1, 5, '2026-04-23 14:47:17', '2026-05-07', NULL, 'borrowed', 0.00),
+(10, 2, 3, '2026-04-23 14:47:17', '2026-04-20', '2026-04-19', 'returned', 0.00),
+(11, 3, 12, '2026-04-23 14:47:17', '2026-04-10', NULL, 'overdue', 50.50),
+(12, 1, 8, '2026-04-23 14:47:17', '2026-05-01', NULL, 'borrowed', 0.00);
 
 --
 -- Indexes for dumped tables
@@ -72,18 +76,7 @@ ALTER TABLE `transactions`
 -- AUTO_INCREMENT for table `transactions`
 --
 ALTER TABLE `transactions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `transactions`
---
-ALTER TABLE `transactions`
-  ADD CONSTRAINT `transactions_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `transactions_ibfk_2` FOREIGN KEY (`book_id`) REFERENCES `books` (`id`) ON DELETE CASCADE;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
