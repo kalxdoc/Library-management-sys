@@ -1,5 +1,5 @@
 <?php
-// config/db.php
+// Rifat
 
 class Database {
     private static $instance = null;
