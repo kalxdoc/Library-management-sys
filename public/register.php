@@ -1,5 +1,5 @@
 <?php
-// public/register.php
+// Developed by Hasan Shahriar Nayan
 session_start();
 require_once __DIR__ . '/../src/Models/User.php';
 
