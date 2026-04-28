@@ -1,5 +1,5 @@
 <?php
-// src/Models/Book.php
+// Developed by Hasan Shahriar Nayan
 require_once __DIR__ . '/../../config/db.php';
 
 class Book {
