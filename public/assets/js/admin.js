@@ -1,4 +1,4 @@
-// public/assets/js/admin.js
+// Developed by Hasan Shahriar Nayan
 
 document.addEventListener('DOMContentLoaded', () => {
     const bookForm = document.getElementById('bookForm');

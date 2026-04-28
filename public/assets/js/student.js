@@ -1,4 +1,4 @@
-// public/assets/js/student.js
+// Developed by Hasan Shahriar Nayan
 async function borrowBook(bookId) {
     try {
         const res = await fetch('api/student.php?action=borrow', {
